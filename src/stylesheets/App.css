@@ -1,19 +1,18 @@
 
 .home{
-  background-image: url("images/background.jpg");
+  background-image: url("../images/background.jpg");
   background-size: cover;
   width: 100%;
   height: 100vh;
 }
 
 .homeDesc{
+  color: #414141;
   margin-left: 20px;
 }
 
 .header{
-  margin: auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 40px auto;
   font-size: 30px;
   font-weight: 600;
 }
@@ -97,4 +96,36 @@
   margin-bottom: 20px;
   font-size: 10px;
   color: rgb(155, 155, 155);
+}
+
+.headerDashboard{
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  width: 100%;
+  height: 8vh;
+  background-color: black;
+}
+.logout{
+  height: 40px;
+  margin-right: 20px;
+  font-size: 16px;
+  color: #525252;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.logout:hover{
+  color: white;
+  background-color: #414141;
+}
+
+.logoutBtnWrapper{
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }

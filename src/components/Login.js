@@ -5,7 +5,7 @@ export default function Login({handleForms}) {
   return (
     <>
         <p className='header'>TASK SCHEDULER</p>
-      <p className='homeDesc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <p className='homeDesc'>Built to make your life more organized and stress-free.</p>
       <form action="" method='post'>
         <input className='txtField' type="text" name="" id="email" placeholder='Email' />
         <input className='txtField' type="password" name="" id="password" placeholder='Password'/>
