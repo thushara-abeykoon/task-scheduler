@@ -1,30 +1,23 @@
 import {useState} from "react";
 import TaskCalendar from "./TaskCalendar";
+import Header, {SearchBar, Tabs} from "./Header";
 
 export default function Dashboard() {
 
     const [username, setUsername] = useState("username");
 
     return (
-        <>
-            <div>
-                <div className={'headerDashboard backdrop-blur-md'}>
-                    <div>
-                        <p style={{marginLeft:"20px"}}>{username}</p>
-                    </div>
-                    <div>
-                        <p className={'header'} style={{color:"#ffffff", margin:'auto'}}>TASK SCHEDULER</p>
-                    </div>
-                    <div className={'logoutBtnWrapper'}>
-                        <button className={'logout'}>Log out</button>
-                    </div>
-                    </div>
+        <div>
+            <div className=' w-full fixed bg-stone-900 text-white rounded-b-full pb-8 pt-4 flex justify-around items-center'>
+                <Tabs />
+                <SearchBar />
+                <Header />
             </div>
             <div style={{display:"flex", justifyContent:"space-between"}}>
-                <div className="backdrop-blur-md w-full h-full">
+                <div className=" w-full h-full">
                     <TaskCalendar />
                 </div>
             </div>
-        </>
+        </div>
     )
 }
