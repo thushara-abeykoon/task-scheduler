@@ -1,7 +1,7 @@
 import {generateDate} from "../utils/generateDate";
 import cn from "../utils/cn";
 import dayjs from "dayjs";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 import {store} from "../redux/store";
 const TaskCalendar = () => {
@@ -13,7 +13,14 @@ const TaskCalendar = () => {
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    const tasksList = store.getState().taskReducer;
+    const [tasksList,setTasksList] = useState([])
+
+    useEffect(() => {
+        store.subscribe(()=>{
+            setTasksList(store.getState().taskReducer)
+        })
+    });
+
 
     return (
         <div className='w-screen h-screen grid grid-cols-1 items-center'>
@@ -57,19 +64,19 @@ const TaskCalendar = () => {
                     </div>
                 </div>
                 <div className={"h-96 w-96 pl-5"}>
-                    <h1 className={"font-semibold"}>
+                    <h2 className={"font-semibold"}>
                         Schedule for <span>{selectDate.toDate().toDateString()}</span>
-                    </h1>
+                    </h2>
                     {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
                         ?<TaskList key={task.id} task={task} />
-                        :<></>)}
+                        :null)}
                 </div>
             </div>
         </div>
 )
 }
 
-function TaskList({ task}){
+function TaskList({task}){
     return (
         <div key={task.id} className='hover:bg-stone-300 active:bg-stone-400 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl pt-1 pb-2 pl-6'>
             <h2  className='text-lg '>{task.title}</h2>
@@ -80,7 +87,7 @@ function TaskList({ task}){
 }
 
 function convertToDateString(date){
-    const date2 = dayjs(Date.parse(date));
+    const date2 = dayjs(date);
     return date2.toDate().toDateString();
 }
 
