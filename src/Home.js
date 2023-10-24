@@ -16,7 +16,7 @@ function Home(props) {
   },[])
 
   store.subscribe(()=>{
-    console.log(store.getState())
+    console.log(store.getState().taskReducer)
   })
 
   return (
