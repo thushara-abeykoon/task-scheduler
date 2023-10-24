@@ -7,7 +7,6 @@ import {TASK_FETCHED} from "../redux/actionTypes";
 
 const TestComponent = (props) => {
 
-    console.log(store.getState(taskReducer(store.getState(),TASK_FETCHED)))
 
     store.subscribe(()=>{
         console.log(store.getState(taskReducer(store.getState(),TASK_FETCHED)))
