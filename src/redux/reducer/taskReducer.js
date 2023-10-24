@@ -1,6 +1,10 @@
 import * as actions from '../actionTypes'
 export default function taskReducer(state=[],action){
     switch (action.type) {
+
+        case actions.TASK_FETCHED:
+            return action.payload;
+
         case actions.TASK_ADDED:
             return [
                 ...state,

@@ -1,15 +1,36 @@
 import {store} from "../redux/store";
-import {taskAdded} from "../redux/actions";
+import {taskAdded, allTasksFetched} from "../redux/actions";
+import bindActionCreators from "react-redux/es/utils/bindActionCreators";
+import {connect} from "react-redux";
+import taskReducer from "../redux/reducer/taskReducer";
+import {TASK_FETCHED} from "../redux/actionTypes";
 
-export const TestComponent = () => {
+const TestComponent = (props) => {
 
-    store.dispatch(taskAdded(1,'hello'))
+    console.log(store.getState(taskReducer(store.getState(),TASK_FETCHED)))
 
-    console.log(store.getState())
+    store.subscribe(()=>{
+        console.log(store.getState(taskReducer(store.getState(),TASK_FETCHED)))
+    })
+
+
 
     return (
-        <div>
-
+        <div className='flex flex-col h-screen justify-center items items-center'>
+            <button className='btnBlue rounded-full w-20 h-10 text-white' onClick={()=>{
+                props.allTasksFetched();
+            }}>Click Me</button>
         </div>
     )
 }
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({taskAdded, allTasksFetched},dispatch);
+}
+function matchStateToProps(state){
+    return {
+        allTasks : state.allTasks
+    }
+}
+
+export default connect(matchStateToProps,matchDispatchToProps)(TestComponent)
