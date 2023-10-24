@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import {useEffect, useState} from "react";
 import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 import {store} from "../redux/store";
+import {AddNewButton} from "./AddNewButton";
 const TaskCalendar = () => {
 
     const days = ["S", "M", "T", "W", "T", "F", "S"];
@@ -63,13 +64,14 @@ const TaskCalendar = () => {
                         })}
                     </div>
                 </div>
-                <div className={"h-96 w-96 pl-5"}>
+                <div className={"h-96 w-96 pl-5 flex flex-col "}>
                     <h2 className={"font-semibold"}>
                         Schedule for <span>{selectDate.toDate().toDateString()}</span>
                     </h2>
                     {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
                         ?<TaskList key={task.id} task={task} />
                         :null)}
+                    <AddNewButton />
                 </div>
             </div>
         </div>
