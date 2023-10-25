@@ -9,7 +9,7 @@ export const taskAdded = (id,title) => ({
     }
 })
 
-export const allTasksFetched = () =>dispatch=> {
+export const allTasksFetched = ()  =>dispatch=> {
   axios.get("http://localhost:8080/api/task")
       .then(res=>{
           dispatch({
@@ -22,4 +22,20 @@ export const allTasksFetched = () =>dispatch=> {
           console.log(error)
       })
 }
+
+export const editorOpened = date => ({
+    type:actions.EDITOR_OPENED,
+    payload: {
+        status: true,
+        date
+    }
+})
+
+export const editorClosed = () => ({
+    type:actions.EDITOR_CLOSED,
+    payload: {
+        status: false,
+        date: null
+    }
+})
 

@@ -18,25 +18,22 @@ function Home(props) {
 
   store.subscribe(()=>{
     console.log(store.getState().taskReducer)
+    console.log(store.getState())
   })
 
-  const [isActive, setIsActive] = useState(false)
 
-  const handleIsActive = (isActive) => {
-    setIsActive(isActive)
-  }
 
   return (
     <div className='home'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomeLeft />} />
-          <Route path='/dashboard' element={<Dashboard handleIsActive={handleIsActive} />} />
+          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/calendar' element={<TaskCalendar />} />
           {/*<Route path='/test-component' element={<TestComponent />} />*/}
         </Routes>
       </BrowserRouter>
-      <TaskEditor isActive={isActive } handleIsActive ={handleIsActive} />
+      <TaskEditor />
     </div>
   );
 }

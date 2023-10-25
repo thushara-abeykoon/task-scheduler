@@ -15,7 +15,7 @@ export default function Dashboard(props) {
             </div>
             <div style={{display:"flex", justifyContent:"space-between"}}>
                 <div className=" w-full h-full">
-                    <TaskCalendar handleIsActive={props.handleIsActive} />
+                    <TaskCalendar />
                 </div>
             </div>
         </div>

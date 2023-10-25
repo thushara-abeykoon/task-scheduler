@@ -1,11 +1,21 @@
-export const AddNewButton = ({handleIsActive}) => {
+import bindActionCreators from "react-redux/es/utils/bindActionCreators";
+import {editorOpened} from "../redux/actions";
+import {connect} from "react-redux";
+
+const AddNewButton = (props) => {
 
 
     return (
         <div>
             <button onClick={()=>{
-                handleIsActive(true)
+                props.editorOpened(props.selectDate)
             }} className='w-72 bsolute mx-auto mt-10 rounded-xl h-10 bg-stone-700 hover:bg-stone-800 text-white'>new task</button>
         </div>
     )
 }
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({editorOpened},dispatch);
+}
+
+export default connect(null,matchDispatchToProps)(AddNewButton)

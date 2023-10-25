@@ -4,8 +4,7 @@ import dayjs from "dayjs";
 import {useEffect, useState} from "react";
 import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 import {store} from "../redux/store";
-import {AddNewButton} from "./AddNewButton";
-import TaskEditor from "./TaskEditor";
+import AddNewButton from "./AddNewButton";
 const TaskCalendar = (props) => {
 
     const days = ["S", "M", "T", "W", "T", "F", "S"];
@@ -72,7 +71,7 @@ const TaskCalendar = (props) => {
                     {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
                         ?<TaskList key={task.id} task={task} />
                         :null)}
-                    <AddNewButton handleIsActive={props.handleIsActive} />
+                    <AddNewButton selectDate={selectDate.toDate().toDateString()} />
                 </div>
             </div>
         </div>

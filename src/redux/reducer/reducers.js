@@ -1,5 +1,5 @@
 import * as actions from '../actionTypes'
-export default function reducers(state=[], action){
+export function taskReducer(state=[], action){
     switch (action.type) {
 
         case actions.TASK_FETCHED:
@@ -16,6 +16,17 @@ export default function reducers(state=[], action){
         case actions.TASK_UPDATED:
             return state.filter(task=>task.id===action.payload.id?(action.payload):task);
 
+        default:
+            return state;
+    }
+}
+
+export function taskEditorReducer(state={status:false,date:null},action){
+    switch (action.type){
+        case actions.EDITOR_OPENED:
+            return action.payload;
+        case actions.EDITOR_CLOSED:
+            return action.payload;
         default:
             return state;
     }
