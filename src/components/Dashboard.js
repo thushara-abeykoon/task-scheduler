@@ -2,7 +2,7 @@ import {useState} from "react";
 import TaskCalendar from "./TaskCalendar";
 import Header, {SearchBar, Tabs} from "./Header";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 
     const [username, setUsername] = useState("username");
 
@@ -15,7 +15,7 @@ export default function Dashboard() {
             </div>
             <div style={{display:"flex", justifyContent:"space-between"}}>
                 <div className=" w-full h-full">
-                    <TaskCalendar />
+                    <TaskCalendar handleIsActive={props.handleIsActive} />
                 </div>
             </div>
         </div>
