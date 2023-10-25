@@ -2,14 +2,14 @@ import {store} from "../redux/store";
 import {taskAdded, allTasksFetched} from "../redux/actions";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import {connect} from "react-redux";
-import taskReducer from "../redux/reducer/taskReducer";
+import reducers from "../redux/reducer/reducers";
 import {TASK_FETCHED} from "../redux/actionTypes";
 
 const TestComponent = (props) => {
 
 
     store.subscribe(()=>{
-        console.log(store.getState(taskReducer(store.getState(),TASK_FETCHED)))
+        console.log(store.getState(reducers(store.getState(),TASK_FETCHED)))
     })
 
 

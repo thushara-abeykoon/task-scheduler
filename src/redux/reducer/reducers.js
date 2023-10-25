@@ -1,5 +1,5 @@
 import * as actions from '../actionTypes'
-export default function taskReducer(state=[],action){
+export default function reducers(state=[], action){
     switch (action.type) {
 
         case actions.TASK_FETCHED:
