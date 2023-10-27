@@ -68,7 +68,7 @@ const TaskCalendar = (props) => {
                     <h2 className={"font-semibold mb-4"}>
                         Schedule for <span>{selectDate.toDate().toDateString()}</span>
                     </h2>
-                    <div className={'rounded-md overflow-y-scroll'} >
+                    <div className={'h-96 rounded-md overflow-y-scroll'} >
                         {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
                             ?<TaskList key={task.id} task={task} />
                             :null)}

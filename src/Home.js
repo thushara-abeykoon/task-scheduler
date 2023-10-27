@@ -11,7 +11,10 @@ import {store} from "./redux/store";
 import TaskEditor from "./components/TaskEditor";
 
 function Home(props) {
-  props.allTasksFetched()
+
+  useEffect(() => {
+    props.allTasksFetched()
+  });
 
   store.subscribe(()=>{
     console.log(store.getState())
