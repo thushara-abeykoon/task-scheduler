@@ -5,6 +5,7 @@ import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import {allTasksFetched, editorClosed} from "../redux/actions";
 import dayjs from "dayjs";
 import axios from "axios";
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 
 const TaskEditor = (props) => {
 
@@ -23,15 +24,10 @@ const TaskEditor = (props) => {
     store.subscribe(()=> {
             setIsActive(store.getState().taskEditorReducer.status)
             const tempDate = store.getState().taskEditorReducer;
-            setDate((tempDate.date)?tempDate.date.toDate().toISOString():tempDate.date)
+            setDate((tempDate.date)?parseToISOString(tempDate.date):tempDate.date)
         }
     )
 
-    useEffect(() => {
-        console.log(desc)
-        console.log(title)
-        console.log(taskType)
-    });
 
 
     return (
@@ -68,6 +64,7 @@ const TaskEditor = (props) => {
                         console.log(dateCreated)
                         taskAdded(title,desc,taskType,date,dateCreated,url);
                         props.allTasksFetched()
+                        props.allTasksFetched()
                         props.editorClosed()
                     }} className='border-2 rounded-md w-20 border-stone-800 hover:bg-blue-400' >add</button>
                 </div>
@@ -96,6 +93,12 @@ const taskAdded = (title, desc, taskType, date, dateCreated, url, dateUpdated= n
     })
 }
 
+function parseToISOString(localDateString){
+    dayjs.extend(customParseFormat)
+    const parsedDate = dayjs(localDateString,{format: "DD/MM/YYYY"});
+    const newDate = parsedDate.add(1,"day")
+    return newDate.toDate().toISOString();
+}
 
 
 function matchDispatchToProps(dispatch){

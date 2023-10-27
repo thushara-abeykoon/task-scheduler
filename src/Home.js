@@ -3,8 +3,7 @@ import './stylesheets/App.css';
 import HomeLeft from './components/HomeLeft';
 import Dashboard from "./components/Dashboard";
 import TaskCalendar from "./components/TaskCalendar";
-// import TestComponent from "./components/TestComponent";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import {allTasksFetched} from "./redux/actions";
 import {connect} from "react-redux";
@@ -12,12 +11,9 @@ import {store} from "./redux/store";
 import TaskEditor from "./components/TaskEditor";
 
 function Home(props) {
-  useEffect(()=>{
-    props.allTasksFetched();
-  },[])
+  props.allTasksFetched()
 
   store.subscribe(()=>{
-    console.log(store.getState().taskReducer)
     console.log(store.getState())
   })
 

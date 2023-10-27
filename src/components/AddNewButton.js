@@ -8,7 +8,7 @@ const AddNewButton = (props) => {
     return (
         <div>
             <button onClick={()=>{
-                props.editorOpened(props.selectDate, props.today)
+                props.editorOpened(props.selectDate)
             }} className='w-72 bsolute mx-auto mt-10 rounded-xl h-10 bg-stone-700 hover:bg-stone-800 text-white'>new task</button>
         </div>
     )
