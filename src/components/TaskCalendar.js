@@ -65,12 +65,14 @@ const TaskCalendar = (props) => {
                     </div>
                 </div>
                 <div className={"h-96 w-96 pl-5 flex flex-col "}>
-                    <h2 className={"font-semibold"}>
+                    <h2 className={"font-semibold mb-4"}>
                         Schedule for <span>{selectDate.toDate().toDateString()}</span>
                     </h2>
-                    {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
-                        ?<TaskList key={task.id} task={task} />
-                        :null)}
+                    <div className={'rounded-md overflow-y-scroll'} >
+                        {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
+                            ?<TaskList key={task.id} task={task} />
+                            :null)}
+                    </div>
                     <AddNewButton selectDate={selectDate.toDate().toLocaleDateString()} />
                 </div>
             </div>
