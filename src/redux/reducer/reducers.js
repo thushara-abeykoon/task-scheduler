@@ -1,15 +1,11 @@
 import * as actions from '../actionTypes'
+import axios from "axios";
 export function taskReducer(state=[], action){
     switch (action.type) {
 
         case actions.TASK_FETCHED:
             return action.payload;
 
-        case actions.TASK_ADDED:
-            return [
-                ...state,
-                action.payload
-            ]
         case actions.TASK_REMOVED:
             return state.filter(task=>task.id!==action.payload.id)
 
@@ -20,6 +16,7 @@ export function taskReducer(state=[], action){
             return state;
     }
 }
+
 
 export function taskEditorReducer(state={status:false,date:null},action){
     switch (action.type){

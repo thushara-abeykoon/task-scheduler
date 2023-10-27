@@ -3,7 +3,7 @@ import './stylesheets/App.css';
 import HomeLeft from './components/HomeLeft';
 import Dashboard from "./components/Dashboard";
 import TaskCalendar from "./components/TaskCalendar";
-import TestComponent from "./components/TestComponent";
+// import TestComponent from "./components/TestComponent";
 import {useEffect, useState} from "react";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import {allTasksFetched} from "./redux/actions";

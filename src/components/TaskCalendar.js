@@ -71,7 +71,7 @@ const TaskCalendar = (props) => {
                     {tasksList.map(task => (convertToDateString(task.date) === selectDate.toDate().toDateString())
                         ?<TaskList key={task.id} task={task} />
                         :null)}
-                    <AddNewButton selectDate={selectDate.toDate().toDateString()} />
+                    <AddNewButton today={currentDate} selectDate={selectDate} />
                 </div>
             </div>
         </div>

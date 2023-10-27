@@ -1,13 +1,6 @@
 import * as actions from './actionTypes'
 import axios from "axios";
 
-export const taskAdded = (id,title) => ({
-    type: actions.TASK_ADDED,
-    payload: {
-        id,
-        title
-    }
-})
 
 export const allTasksFetched = ()  =>dispatch=> {
   axios.get("http://localhost:8080/api/task")
@@ -23,11 +16,12 @@ export const allTasksFetched = ()  =>dispatch=> {
       })
 }
 
-export const editorOpened = date => ({
+export const editorOpened = (date,today) => ({
     type:actions.EDITOR_OPENED,
     payload: {
         status: true,
-        date
+        date,
+        today
     }
 })
 
