@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 import {store} from "../redux/store";
 import AddNewButton from "./AddNewButton";
-const TaskCalendar = (props) => {
+const TaskCalendar = () => {
 
     const days = ["S", "M", "T", "W", "T", "F", "S"];
     const currentDate = dayjs();
