@@ -24,7 +24,7 @@ const TaskCalendar = () => {
 
 
     return (
-        <div className='w-screen h-screen grid grid-cols-1 items-center'>
+        <div className='w-screen mt-10 grid grid-cols-1 items-center'>
             <div className="flex mx-auto divide-x-2 gap-10 items-center select-none max-w-screen-xs md:max-w-2xl ">
                 <div className='w-96 h-96 mx-6'>
                     <div className="flex justify-between">

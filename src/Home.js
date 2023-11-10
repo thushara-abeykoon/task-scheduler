@@ -9,6 +9,8 @@ import {allTasksFetched} from "./redux/actions";
 import {connect} from "react-redux";
 import {store} from "./redux/store";
 import TaskEditor from "./components/TaskEditor";
+import About from './components/About';
+import Header, {SearchBar, Tabs} from "./components/Header";
 
 function Home(props) {
 
@@ -24,11 +26,17 @@ function Home(props) {
 
   return (
     <div className='home'>
+      <div className=' w-full bg-stone-900 text-white rounded-b-full pb-8 pt-4 flex justify-around items-center'>
+                <Tabs />
+                <SearchBar />
+                <Header />
+            </div>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomeLeft />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/calendar' element={<TaskCalendar />} />
+          <Route path='/about' element={<About />} />
           {/*<Route path='/test-component' element={<TestComponent />} />*/}
         </Routes>
       </BrowserRouter>
