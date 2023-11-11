@@ -11,9 +11,9 @@ export default function Task({
   status,
 }) {
   return (
-    <div className=" place-items-center border-2 border-black px-10 py-3 mt-5 flex justify-between rounded-lg hover:bg-stone-400 cursor-pointer ">
+    <div className=" text-stone-500 place-items-center border-2 border-black px-10 py-3 mt-5 flex justify-between rounded-lg hover:bg-stone-400 cursor-pointer ">
       <div>
-        <h3 className="text-lg">{title}</h3>
+        <h3 className="text-xl text-black">{title}</h3>
         <div className="flex justify-between w-44">
           <p className="text-xs">{taskType}</p>
           <p className="text-xs">{date}</p>

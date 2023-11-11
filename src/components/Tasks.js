@@ -18,7 +18,7 @@ export default function Tasks() {
           title={"Hello"}
           taskType={"EXAM"}
           date={"2023/08/29"}
-          status={"SCHEDULED"}
+          status={"COMPLETED"}
         />
         <Task
           title={"Hello"}

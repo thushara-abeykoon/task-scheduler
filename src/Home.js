@@ -10,6 +10,7 @@ import TaskEditor from "./components/TaskEditor";
 import About from "./components/About";
 import Header, { SearchBar, Tabs } from "./components/Header";
 import Tasks from "./components/Tasks";
+import NotFound from "./components/NotFound";
 
 function Home(props) {
   useEffect(() => {
@@ -31,6 +32,7 @@ function Home(props) {
         <Route path="/" element={<Dashboard />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <TaskEditor />
     </div>

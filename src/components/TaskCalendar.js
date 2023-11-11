@@ -135,7 +135,7 @@ function TaskList({ task }) {
       key={task.id}
       className="hover:bg-stone-300 active:bg-stone-400 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl pt-1 pb-2 pl-6"
     >
-      <h2 className="text-lg ">{task.title}</h2>
+      <h2 className="text-lg text-ellipsis">{task.title}</h2>
       <p
         className={`text-xs ${
           task.status === "IN_PROGRESS"
