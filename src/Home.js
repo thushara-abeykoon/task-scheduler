@@ -9,6 +9,7 @@ import { store } from "./redux/store";
 import TaskEditor from "./components/TaskEditor";
 import About from "./components/About";
 import Header, { SearchBar, Tabs } from "./components/Header";
+import Tasks from "./components/Tasks";
 
 function Home(props) {
   useEffect(() => {
@@ -28,6 +29,7 @@ function Home(props) {
       </div>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/tasks" element={<Tasks />} />
         <Route path="/about" element={<About />} />
       </Routes>
       <TaskEditor />
