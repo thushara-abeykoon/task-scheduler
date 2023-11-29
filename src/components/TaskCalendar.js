@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { store } from "../redux/store";
 import AddNewButton from "./AddNewButton";
-const TaskCalendar = () => {
+import bindActionCreators from "react-redux/es/utils/bindActionCreators";
+import { allTasksFetched } from "../redux/actions";
+import { connect } from "react-redux";
+
+const TaskCalendar = (props) => {
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
@@ -27,6 +31,10 @@ const TaskCalendar = () => {
   ];
 
   const [tasksList, setTasksList] = useState([]);
+
+  useEffect(() => {
+    props.allTasksFetched();
+  });
 
   useEffect(() => {
     store.subscribe(() => {
@@ -156,4 +164,8 @@ function convertToDateString(date) {
   return date2.toDate().toDateString();
 }
 
-export default TaskCalendar;
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ allTasksFetched }, dispatch);
+}
+
+export default connect(null, matchDispatchToProps)(TaskCalendar);
