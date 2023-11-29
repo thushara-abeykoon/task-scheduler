@@ -89,11 +89,10 @@ const TaskEditor = (props) => {
           </select>
           <button
             onClick={() => {
-              console.log(date);
-              console.log(dateCreated);
               taskAdded(title, desc, taskType, date, dateCreated, url);
-              props.allTasksFetched();
-              props.allTasksFetched();
+              setTimeout(() => {
+                props.allTasksFetched();
+              }, 2000);
               props.editorClosed();
             }}
             className="border-2 rounded-md w-20 border-stone-800 hover:bg-blue-400"
@@ -128,11 +127,12 @@ const taskAdded = (
       url: url,
     })
     .then((res) => {
-      console.log(res);
+      return res;
     })
     .catch((err) => {
       alert("Unknown Error Occurred");
       console.log(err);
+      return err;
     });
 };
 
