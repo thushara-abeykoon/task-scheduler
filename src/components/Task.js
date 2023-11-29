@@ -1,9 +1,13 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import bindActionCreators from "react-redux/es/utils/bindActionCreators";
+import { allTasksFetched } from "../redux/actions";
+import { connect } from "react-redux";
 
-export default function Task({
+function Task({
   id,
   title,
   //   desc,
@@ -13,8 +17,26 @@ export default function Task({
   //   url,
   //   dateUpdated,
   status,
+  allTasksFetched,
 }) {
   const [optionsDisplay, setOptionsDisplay] = useState(false);
+
+  const helloWorld = () => {
+    console.log("hello world");
+  };
+
+  const deleteTask = (id) => {
+    const res = axios
+      .delete(`http://localhost:8080/api/task/${id}`)
+      .then((res) => {
+        allTasksFetched();
+        return res;
+      })
+      .catch((err) => err);
+    console.log(res);
+
+    return res;
+  };
 
   return (
     <div
@@ -42,7 +64,15 @@ export default function Task({
       >
         <OptionButton elm={<MdOutlineRemoveRedEye />} />
         <OptionButton elm={<MdOutlineModeEdit />} />
-        <OptionButton elm={<MdDeleteOutline />} />
+        <OptionButton
+          elm={
+            <MdDeleteOutline
+              onClick={() => {
+                deleteTask(id);
+              }}
+            />
+          }
+        />
       </div>
       <div className="w-24">
         <p
@@ -60,6 +90,12 @@ export default function Task({
     </div>
   );
 }
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ allTasksFetched }, dispatch);
+}
+
+export default connect(null, matchDispatchToProps)(Task);
 
 const OptionButton = ({ elm }) => {
   return (
