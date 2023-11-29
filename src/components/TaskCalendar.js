@@ -34,7 +34,7 @@ const TaskCalendar = (props) => {
 
   useEffect(() => {
     props.allTasksFetched();
-  });
+  }, []);
 
   useEffect(() => {
     store.subscribe(() => {

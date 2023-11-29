@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Task from "./Task";
+import { store } from "../redux/store";
+import bindActionCreators from "react-redux/es/utils/bindActionCreators";
+import { allTasksFetched } from "../redux/actions";
+import { connect } from "react-redux";
 
-export default function Tasks() {
+function Tasks(props) {
+  const [tasksList, setTasksList] = useState([]);
+
+  useEffect(() => {
+    props.allTasksFetched();
+  }, []);
+
+  useEffect(() => {
+    store.subscribe(() => {
+      setTasksList(store.getState().taskReducer);
+    });
+  });
+  console.log(tasksList);
   return (
     <div className="p-10">
       <div className="flex justify-end">
@@ -14,61 +30,22 @@ export default function Tasks() {
         </select>
       </div>
       <div className="h-96 overflow-auto rounded-lg">
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"COMPLETED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
-        <Task
-          title={"Hello"}
-          taskType={"EXAM"}
-          date={"2023/08/29"}
-          status={"SCHEDULED"}
-        />
+        {tasksList.map((elm) => (
+          <Task
+            id={elm.id}
+            title={elm.title}
+            taskType={elm.taskType}
+            date={elm.date}
+            status={elm.status}
+          />
+        ))}
       </div>
     </div>
   );
 }
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ allTasksFetched }, dispatch);
+}
+
+export default connect(null, matchDispatchToProps)(Tasks);
