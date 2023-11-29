@@ -89,11 +89,26 @@ const TaskEditor = (props) => {
           </select>
           <button
             onClick={() => {
-              taskAdded(title, desc, taskType, date, dateCreated, url);
-              setTimeout(() => {
-                props.allTasksFetched();
-              }, 2000);
-              props.editorClosed();
+              axios
+                .post("http://localhost:8080/api/task", {
+                  title: title,
+                  desc: desc,
+                  status: "SCHEDULED",
+                  taskType: taskType,
+                  date: date,
+                  dateCreated: dateCreated,
+                  dateUpdated: null,
+                  url: url,
+                })
+                .then((res) => {
+                  props.allTasksFetched();
+                  props.editorClosed();
+                  return res;
+                })
+                .catch((err) => {
+                  alert("Unknown Error Occurred");
+                  console.log(err);
+                });
             }}
             className="border-2 rounded-md w-20 border-stone-800 hover:bg-blue-400"
           >
