@@ -56,7 +56,7 @@ const TaskEditor = (props) => {
     setDate(null);
     setTaskType("select a type");
     setStatus("SCHEDULED");
-    setDateCreated(null);
+    setDateCreated(dayjs().toDate().toISOString());
     setDateUpdated(null);
   };
 
@@ -207,37 +207,6 @@ const TaskEditor = (props) => {
       </div>
     </div>
   );
-};
-
-const taskAdded = (
-  title,
-  desc,
-  taskType,
-  date,
-  dateCreated,
-  url,
-  dateUpdated = null,
-  status = "SCHEDULED"
-) => {
-  axios
-    .post("http://localhost:8080/api/task", {
-      title: title,
-      desc: desc,
-      status: status,
-      taskType: taskType,
-      date: date,
-      dateCreated: dateCreated,
-      dateUpdated: dateUpdated,
-      url: url,
-    })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => {
-      alert("Unknown Error Occurred");
-      console.log(err);
-      return err;
-    });
 };
 
 function parseToISOString(localDateString) {
