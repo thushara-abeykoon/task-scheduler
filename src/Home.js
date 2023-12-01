@@ -1,20 +1,27 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./stylesheets/App.css";
 import Dashboard from "./components/Dashboard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import { allTasksFetched } from "./redux/actions";
 import { connect } from "react-redux";
 import { store } from "./redux/store";
 import TaskEditor from "./components/TaskEditor";
 import About from "./components/About";
-import Header, { SearchBar, Tabs } from "./components/Header";
+import Header, { MobileTabs, SearchBar, Tabs } from "./components/Header";
 import Tasks from "./components/Tasks";
 import NotFound from "./components/NotFound";
 
 function Home(props) {
   useEffect(() => {
     props.allTasksFetched();
+  }, []);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+    });
   });
 
   store.subscribe(() => {
@@ -23,9 +30,9 @@ function Home(props) {
 
   return (
     <div className="home">
-      <div className=" w-full bg-stone-900 text-white rounded-b-full pb-8 pt-4 flex justify-around items-center">
-        <Tabs />
-        <SearchBar />
+      <div className=" w-full bg-stone-900 text-white  pb-8 pt-4 flex justify-around items-center">
+        {windowWidth < 1000 ? <MobileTabs /> : <Tabs />}
+        {/* <SearchBar /> */}
         <Header />
       </div>
       <Routes>

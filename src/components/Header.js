@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { TiThMenu } from "react-icons/ti";
 
 export function Tabs() {
   const tabDecoration =
@@ -18,6 +19,41 @@ export function Tabs() {
       <Link to="about" className={tabDecoration}>
         about
       </Link>
+    </div>
+  );
+}
+
+export function MobileTabs() {
+  const [tabsIsActive, setTabsIsActive] = useState(false);
+
+  return (
+    <div className="text-4xl fixed left-5 top-6 z-50">
+      <TiThMenu
+        onClick={() => {
+          setTabsIsActive(tabsIsActive ? false : true);
+        }}
+      />
+      {tabsIsActive ? (
+        <div className="fixed w-52 h-full py-5 text-2xl top-24 left-0 flex flex-col bg-stone-900 rounded-b-3xl bg-opacity-80 backdrop-blur-md">
+          <Link to="">
+            <div className="px-8 active:bg-black hover:pr-10 bg-opacity-100 py-5">
+              calender
+            </div>
+          </Link>
+          <Link to="tasks">
+            <div className="px-8 active:bg-black bg-opacity-100 py-5">
+              tasks
+            </div>
+          </Link>
+          <Link to="about">
+            <div className="px-8 active:bg-black bg-opacity-100 py-5">
+              about
+            </div>
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
