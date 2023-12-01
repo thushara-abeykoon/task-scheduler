@@ -43,7 +43,11 @@ export default function TaskViewer({ id, visible, handleViewer }) {
               {task.title}
             </div>
             <div className="m-8 h-36 text-center overflow-auto">
-              {task.desc}
+              <textarea
+                value={task.desc}
+                className="w-full h-full text-center bg-white"
+                disabled
+              ></textarea>
             </div>
             <div className="flex items-center justify-center px-10 py-4">
               <p className="mr-10">{task.url.toLowerCase()}</p>
