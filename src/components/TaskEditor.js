@@ -8,17 +8,31 @@ import axios from "axios";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 const TaskEditor = (props) => {
-  const [isActive, setIsActive] = useState(false);
+  const [task, setTask] = useState();
+  useEffect(() => {
+    if (props.id != null && props.method === "update") {
+      axios
+        .get(`http://localhost:8080/api/task/${props.id}`)
+        .then((res) => {
+          setTask(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [props.id]);
 
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [url, setUrl] = useState("");
-  const [date, setDate] = useState(null);
-  const [taskType, setTaskType] = useState();
+  const [isActive, setIsActive] = useState(false);
+  const [title, setTitle] = useState(task ? task.title : "");
+  const [desc, setDesc] = useState(task ? task.desc : "");
+  const [url, setUrl] = useState(task ? task.url : "");
+  const [date, setDate] = useState(task ? task.date : "");
+  const [taskType, setTaskType] = useState(task ? task.taskType : "");
   const [dateCreated, setDateCreated] = useState(
-    dayjs().toDate().toISOString()
+    task ? task.dateCreated : dayjs().toDate().toISOString()
   );
-  const [dateUpdated, setDateUpdated] = useState(null);
+  const [dateUpdated, setDateUpdated] = useState(
+    task ? task.dateUpdated : null
+  );
 
   store.subscribe(() => {
     setIsActive(store.getState().taskEditorReducer.status);
@@ -45,11 +59,13 @@ const TaskEditor = (props) => {
           type="text"
           className="font-semibold w-full text-2xl border-opacity-20 pb-3 border-b-2 bg-transparent outline-none  border-black"
           placeholder="title"
+          value={task ? title : ""}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         />
         <textarea
+          value={task ? desc : ""}
           onChange={(event) => setDesc(event.target.value)}
           cols="30"
           rows="10"
@@ -57,6 +73,7 @@ const TaskEditor = (props) => {
           className="h-full resize-none mt-5 w-full outline-none border-b-2 border-black border-opacity-20 pb-4"
         ></textarea>
         <input
+          value={task ? url : ""}
           onChange={(event) => setUrl(event.target.value)}
           type="text"
           placeholder="url"
@@ -67,7 +84,7 @@ const TaskEditor = (props) => {
             {date ? date.substring(0, 10) : null}
           </p>
           <select
-            defaultValue="select a type"
+            defaultValue={task ? taskType : "select a type"}
             onChange={(event) =>
               setTaskType(
                 event.target.value

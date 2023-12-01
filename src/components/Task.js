@@ -4,7 +4,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
-import { allTasksFetched } from "../redux/actions";
+import { allTasksFetched, editorOpened } from "../redux/actions";
 import { connect } from "react-redux";
 import TaskViewer from "./TaskViewer";
 
@@ -19,6 +19,7 @@ function Task({
   //   dateUpdated,
   status,
   allTasksFetched,
+  editorOpened,
   handleViewer,
 }) {
   const [optionsDisplay, setOptionsDisplay] = useState(false);

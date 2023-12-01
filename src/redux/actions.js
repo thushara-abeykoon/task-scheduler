@@ -16,11 +16,13 @@ export const allTasksFetched = () => (dispatch) => {
     });
 };
 
-export const editorOpened = (date) => ({
+export const editorOpened = (date, method, id) => ({
   type: actions.EDITOR_OPENED,
   payload: {
     status: true,
     date,
+    method,
+    id,
   },
 });
 
@@ -29,5 +31,7 @@ export const editorClosed = () => ({
   payload: {
     status: false,
     date: null,
+    method: null,
+    id: null,
   },
 });

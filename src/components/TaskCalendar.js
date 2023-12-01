@@ -8,8 +8,17 @@ import AddNewButton from "./AddNewButton";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import { allTasksFetched } from "../redux/actions";
 import { connect } from "react-redux";
+import TaskViewer from "./TaskViewer";
 
 const TaskCalendar = (props) => {
+  const [id, setId] = useState(null);
+  const [visible, setVisible] = useState(false);
+
+  const handleViewer = (id, visible) => {
+    setId(id);
+    setVisible(visible);
+  };
+
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
@@ -126,22 +135,30 @@ const TaskCalendar = (props) => {
             {tasksList.map((task) =>
               convertToDateString(task.date) ===
               selectDate.toDate().toDateString() ? (
-                <TaskList key={task.id} task={task} />
+                <TaskList
+                  key={task.id}
+                  task={task}
+                  handleViewer={handleViewer}
+                />
               ) : null
             )}
           </div>
           <AddNewButton selectDate={selectDate.toDate().toLocaleDateString()} />
         </div>
       </div>
+      <TaskViewer id={id} visible={visible} handleViewer={handleViewer} />
     </div>
   );
 };
 
-function TaskList({ task }) {
+function TaskList({ task, handleViewer }) {
   return (
     <div
       key={task.id}
-      className="hover:bg-stone-300 active:bg-stone-400 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl pt-1 pb-2 pl-6"
+      className="hover:bg-blue-100 active:bg-blue-200 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl pt-1 pb-2 pl-6"
+      onClick={() => {
+        handleViewer(task.id, true);
+      }}
     >
       <h2 className="text-lg text-ellipsis">{task.title}</h2>
       <p
