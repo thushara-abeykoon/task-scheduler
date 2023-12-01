@@ -28,6 +28,10 @@ function Task({
     console.log("hello world");
   };
 
+  const openEditor = (id) => {
+    editorOpened(null, "update", id);
+  };
+
   const deleteTask = (id) => {
     const res = axios
       .delete(`http://localhost:8080/api/task/${id}`)
@@ -74,7 +78,15 @@ function Task({
             />
           }
         />
-        <OptionButton elm={<MdOutlineModeEdit />} />
+        <OptionButton
+          elm={
+            <MdOutlineModeEdit
+              onClick={() => {
+                openEditor(id);
+              }}
+            />
+          }
+        />
         <OptionButton
           elm={
             <MdDeleteOutline
@@ -103,7 +115,7 @@ function Task({
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ allTasksFetched }, dispatch);
+  return bindActionCreators({ allTasksFetched, editorOpened }, dispatch);
 }
 
 export default connect(null, matchDispatchToProps)(Task);
