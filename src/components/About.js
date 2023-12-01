@@ -35,7 +35,7 @@ export default function About() {
 function DeveloperCard({ role, name, imageUrl, linkedIn, gmail, gitHub }) {
   const [copyMessageActive, setCopyMessageActive] = useState(false);
   return (
-    <div className=" shadow-2xl flex flex-col items-center p-10 bg-white rounded-xl w-96 h-3/4 backdrop-blur-sm">
+    <div className=" shadow-2xl flex flex-col items-center p-10 bg-white bg-opacity-40 rounded-xl w-96 h-3/4 backdrop-blur-sm">
       <h3 className="text-xl font-bold">{name}</h3>
       <h3 className="text-sm">{role}</h3>
       <img

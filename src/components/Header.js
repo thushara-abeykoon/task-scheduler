@@ -76,8 +76,9 @@ export function SearchBar() {
 
 export default function Header() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h1 className="font-thin text-5xl">task scheduler</h1>
+      <p className="text-xs pt-2">powered by exam calender backend</p>
     </div>
   );
 }
