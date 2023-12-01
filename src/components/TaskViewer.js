@@ -51,14 +51,16 @@ export default function TaskViewer({ id, visible, handleViewer }) {
               ></textarea>
             </div>
             <div className="flex items-center justify-center px-10 py-4">
-              <p className="mr-10">{task.url.toLowerCase()}</p>
+              <p className="mr-10">{task ? task.url.toLowerCase() : null}</p>
               <div
                 onClick={() => {
-                  navigator.clipboard.writeText(`${task.url.toLowerCase()}`);
-                  setCopyMessageActive(true);
-                  setTimeout(() => {
-                    setCopyMessageActive(false);
-                  }, 900);
+                  if (task !== null) {
+                    navigator.clipboard.writeText(`${task.url.toLowerCase()}`);
+                    setCopyMessageActive(true);
+                    setTimeout(() => {
+                      setCopyMessageActive(false);
+                    }, 900);
+                  }
                 }}
                 className="text-lg cursor-pointer h-10 w-10 flex justify-center items-center rounded-full hover:bg-gray-200 "
               >

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -21,12 +23,15 @@ export function Tabs() {
 }
 
 export function SearchBar() {
+  const [searchText, setSearchText] = useState();
+
   return (
     <div className="border-2 px-4 py-2 rounded-full flex items-center">
       <input
         className="outline-0 text-lg bg-transparent mr-3"
         placeholder="search tasks"
         type="text"
+        onChange={(e) => setSearchText(e.target.value)}
       />
       <FaSearch className="text-xl cursor-pointer text-stone-500" />
     </div>
