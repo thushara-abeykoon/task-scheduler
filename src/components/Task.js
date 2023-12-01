@@ -53,7 +53,7 @@ function Task({
       onMouseLeave={() => {
         setOptionsDisplay(false);
       }}
-      className=" text-stone-500 place-items-center border-2 border-black px-10 py-3 mt-5 flex justify-between rounded-lg backdrop-blur-sm hover:bg-blue-200 "
+      className=" text-stone-500 place-items-center border-2 border-black px-10 py-3 mt-5 flex justify-between rounded-lg backdrop-blur-md hover:bg-blue-200 "
     >
       <div className="w-64">
         <h3 className="text-xl text-black">{title}</h3>

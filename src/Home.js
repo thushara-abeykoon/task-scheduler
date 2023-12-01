@@ -30,7 +30,7 @@ function Home(props) {
 
   return (
     <div className="home">
-      <div className=" w-full bg-stone-900 text-white  pb-8 pt-4 flex justify-around items-center">
+      <div className=" w-full bg-gradient-to-r from-indigo-900 to-red-900 text-white  pb-8 pt-4 flex justify-around items-center">
         {windowWidth < 1000 ? <MobileTabs /> : <Tabs />}
         {/* <SearchBar /> */}
         <Header />

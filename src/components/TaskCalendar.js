@@ -155,7 +155,7 @@ function TaskList({ task, handleViewer }) {
   return (
     <div
       key={task.id}
-      className="hover:bg-blue-100 active:bg-blue-200 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl w-72 pt-1 pb-2 px-4"
+      className="hover:bg-blue-100 active:bg-blue-200 mt-2 cursor-pointer backdrop-blur-md border-2 border-black rounded-2xl w-72 pt-1 pb-2 px-4"
       onClick={() => {
         handleViewer(task.id, true);
       }}
