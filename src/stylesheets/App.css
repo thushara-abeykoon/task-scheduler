@@ -135,3 +135,14 @@ body{
   justify-content: end;
   align-items: center;
 }
+
+.copyMessage{
+  animation: messageLoader 1s;
+}
+
+@keyframes messageLoader {
+  0%{opacity: 0;}
+  20%{opacity: 100;}
+  80%{opacity: 100;}
+  100%{opacity: 0;}
+}

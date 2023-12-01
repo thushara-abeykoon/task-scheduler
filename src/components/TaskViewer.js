@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdContentCopy } from "react-icons/md";
+import CopyMessage from "./CopyMessage";
 
 export default function TaskViewer({ id, visible, handleViewer }) {
   const [task, setTask] = useState();
-
+  const [copyMessageActive, setCopyMessageActive] = useState(false);
   useEffect(() => {
     if (id != null) {
       axios
@@ -45,7 +46,7 @@ export default function TaskViewer({ id, visible, handleViewer }) {
             <div className="m-8 h-36 text-center overflow-auto">
               <textarea
                 value={task.desc}
-                className="w-full h-full text-center bg-white"
+                className="w-full h-full text-center bg-white resize-none"
                 disabled
               ></textarea>
             </div>
@@ -54,7 +55,10 @@ export default function TaskViewer({ id, visible, handleViewer }) {
               <div
                 onClick={() => {
                   navigator.clipboard.writeText(`${task.url.toLowerCase()}`);
-                  alert("copied to clipboard");
+                  setCopyMessageActive(true);
+                  setTimeout(() => {
+                    setCopyMessageActive(false);
+                  }, 900);
                 }}
                 className="text-lg cursor-pointer h-10 w-10 flex justify-center items-center rounded-full hover:bg-gray-200 "
               >
@@ -74,6 +78,7 @@ export default function TaskViewer({ id, visible, handleViewer }) {
                   ? task.dateUpdated.substring(0, 10)
                   : "No Update Details"}
               </p>
+              <CopyMessage activeStatus={copyMessageActive} />
             </div>
           </>
         ) : (
