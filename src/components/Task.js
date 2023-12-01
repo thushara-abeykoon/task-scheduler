@@ -6,6 +6,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import { allTasksFetched } from "../redux/actions";
 import { connect } from "react-redux";
+import TaskViewer from "./TaskViewer";
 
 function Task({
   id,
@@ -18,6 +19,7 @@ function Task({
   //   dateUpdated,
   status,
   allTasksFetched,
+  handleViewer,
 }) {
   const [optionsDisplay, setOptionsDisplay] = useState(false);
 
@@ -62,7 +64,15 @@ function Task({
             : "opacity-0 flex w-20 justify-between"
         }
       >
-        <OptionButton elm={<MdOutlineRemoveRedEye />} />
+        <OptionButton
+          elm={
+            <MdOutlineRemoveRedEye
+              onClick={() => {
+                handleViewer(id, true);
+              }}
+            />
+          }
+        />
         <OptionButton elm={<MdOutlineModeEdit />} />
         <OptionButton
           elm={

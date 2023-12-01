@@ -4,6 +4,7 @@ import { store } from "../redux/store";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
 import { allTasksFetched } from "../redux/actions";
 import { connect } from "react-redux";
+import TaskViewer from "./TaskViewer";
 
 function Tasks(props) {
   const [tasksList, setTasksList] = useState([]);
@@ -17,7 +18,15 @@ function Tasks(props) {
       setTasksList(store.getState().taskReducer);
     });
   });
-  console.log(tasksList);
+
+  const [id, setId] = useState(null);
+  const [visible, setVisible] = useState(false);
+
+  const handleViewer = (id, visible) => {
+    setId(id);
+    setVisible(visible);
+  };
+
   return (
     <div className="p-10">
       <div className="flex justify-end">
@@ -37,9 +46,11 @@ function Tasks(props) {
             taskType={elm.taskType}
             date={elm.date}
             status={elm.status}
+            handleViewer={handleViewer}
           />
         ))}
       </div>
+      <TaskViewer id={id} visible={visible} handleViewer={handleViewer} />
     </div>
   );
 }
