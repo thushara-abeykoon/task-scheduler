@@ -34,7 +34,7 @@ export function MobileTabs() {
         }}
       />
       {tabsIsActive ? (
-        <div className="fixed w-52 h-full py-5 text-2xl top-24 left-0 flex flex-col bg-stone-900 rounded-b-3xl bg-opacity-80 backdrop-blur-md">
+        <div className="fixed w-3/4 h-full py-5 text-2xl top-24 left-0 flex flex-col bg-stone-900 rounded-b-3xl bg-opacity-80 backdrop-blur-md">
           <Link to="">
             <div className="px-8 active:bg-black hover:pr-10 bg-opacity-100 py-5">
               calender

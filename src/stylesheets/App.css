@@ -3,8 +3,12 @@ body{
   background-image: url('../images/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-
 }
+
+#root{
+  min-width: 900px;
+}
+
 .home{
   /*background-image: url("../images/background.jpg");*/
   background-size: cover;

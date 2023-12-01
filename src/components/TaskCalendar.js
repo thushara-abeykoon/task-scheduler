@@ -52,8 +52,8 @@ const TaskCalendar = (props) => {
   });
 
   return (
-    <div className="w-screen mt-10 grid grid-cols-1 items-center">
-      <div className="flex mx-auto divide-x-2 gap-10 items-center select-none max-w-screen-xs md:max-w-2xl ">
+    <div className="w-full mt-10 grid grid-cols-1 items-center">
+      <div className="flex mx-auto divide-x-2 gap-10 items-center select-none max-w-full-xs md:max-w-2xl ">
         <div className="w-96 h-96 mx-6">
           <div className="flex justify-between">
             <div>
@@ -155,7 +155,7 @@ function TaskList({ task, handleViewer }) {
   return (
     <div
       key={task.id}
-      className="hover:bg-blue-100 active:bg-blue-200 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl pt-1 pb-2 px-4"
+      className="hover:bg-blue-100 active:bg-blue-200 mt-2 cursor-pointer bg-neutral-200 border-2 border-black rounded-2xl w-72 pt-1 pb-2 px-4"
       onClick={() => {
         handleViewer(task.id, true);
       }}
