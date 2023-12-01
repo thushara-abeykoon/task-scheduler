@@ -6,7 +6,8 @@ import { allTasksFetched, editorClosed } from "../redux/actions";
 import dayjs from "dayjs";
 import axios from "axios";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { MdOutlineAddTask } from "react-icons/md";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
 
 const TaskEditor = (props) => {
   const id = useSelector((state) => state.taskEditorReducer.id);
@@ -100,7 +101,7 @@ const TaskEditor = (props) => {
           className="w-full text-md border-opacity-20 mt-5 pb-2 border-b-2 bg-transparent outline-none  border-black"
         />
         {method === "update" ? (
-          <div className="flex justify-between w-full py-2 border-b-2">
+          <div className="flex justify-between w-full py-2 border-b-2 text-stone-600">
             <p>
               Created On: {dateCreated ? dateCreated.substring(0, 10) : null}
             </p>
@@ -109,7 +110,7 @@ const TaskEditor = (props) => {
               {dateUpdated ? dateUpdated.substring(0, 10) : "No Update Status"}
             </p>
             <select
-              defaultValue={status}
+              value={status}
               onChange={(e) => setStatus(e.target.value)}
               className="border-2 text-stone-600 border-stone-400 rounded-lg outline-none w-40"
             >
@@ -126,7 +127,7 @@ const TaskEditor = (props) => {
             {date ? date.substring(0, 10) : null}
           </p>
           <select
-            defaultValue={taskType.toLowerCase()}
+            value={taskType.toLowerCase()}
             onChange={(event) =>
               setTaskType(
                 event.target.value
@@ -148,31 +149,59 @@ const TaskEditor = (props) => {
           </select>
           <button
             onClick={() => {
-              axios
-                .post("http://localhost:8080/api/task", {
-                  title: title,
-                  desc: desc,
-                  status: status,
-                  taskType: taskType,
-                  date: date,
-                  dateCreated: dateCreated,
-                  dateUpdated: null,
-                  url: url,
-                })
-                .then((res) => {
-                  props.allTasksFetched();
-                  props.editorClosed();
-                  return res;
-                })
-                .catch((err) => {
-                  alert("Unknown Error Occurred");
-                  console.log(err);
-                });
+              if (method === "update") {
+                axios
+                  .put(`http://localhost:8080/api/task/${id}`, {
+                    id: id,
+                    title: title,
+                    desc: desc,
+                    status: status,
+                    taskType: taskType,
+                    date: date,
+                    dateCreated: dateCreated,
+                    dateUpdated: dayjs().toDate().toISOString(),
+                    url: url,
+                  })
+                  .then((res) => {
+                    props.allTasksFetched();
+                    props.editorClosed();
+                    console.log(res);
+                  })
+                  .catch((err) => {
+                    alert("Task Update Failed");
+                    console.log(err);
+                  });
+              } else {
+                axios
+                  .post("http://localhost:8080/api/task", {
+                    title: title,
+                    desc: desc,
+                    status: status,
+                    taskType: taskType,
+                    date: date,
+                    dateCreated: dateCreated,
+                    dateUpdated: null,
+                    url: url,
+                  })
+                  .then((res) => {
+                    props.allTasksFetched();
+                    props.editorClosed();
+                    return res;
+                  })
+                  .catch((err) => {
+                    alert("Task Add Failed");
+                    console.log(err);
+                  });
+              }
               resetEditor();
             }}
-            className=" w-12 h-12 flex justify-center bg-black items-center rounded-full hover:bg-blue-800 text-white text-3xl"
+            className=" w-12 h-12 flex justify-center bg-white items-center rounded-full hover:bg-blue-200 text-black text-4xl"
           >
-            <MdOutlineAddTask />
+            {method === "update" ? (
+              <FaRegArrowAltCircleUp />
+            ) : (
+              <IoMdAddCircleOutline />
+            )}
           </button>
         </div>
       </div>
